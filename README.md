@@ -1,1 +1,7 @@
 # streamflix-project
+Phase 1 – Data Quality Report
+In Phase 1, all six tables were reviewed and validated to ensure that the data was suitable for further analysis. Where required, data formats were corrected without modifying the original raw data.
+The following checks were performed for all tables:
+Reviewed the first few records using head(). Checked the number of rows and columns using shape. Validated column data types using dtypes. Checked for duplicate records and duplicate IDs where applicable. Checked for missing/null values in all columns. Data Format Validation
+The date columns were initially stored as strings. These columns were converted to the appropriate datetime format using pd.to_datetime() to support accurate date-based analysis.
+Subscribers Table Missing values were found in the churn_date column. These missing values were considered valid because the corresponding subscribers were active, and therefore had not churned. A validation check was performed to identify subscribers whose churn_date was earlier than their signup_date. No such invalid records were found. Watch History Table Referential integrity was checked between watch_history.subscriber_id and subscribers.subscriber_id. All subscriber IDs in the watch history were found in the subscribers table. A check was also performed to identify records where watch_duration_min exceeded content_duration_min. No such records were found. completion_pct was validated against the calculated completion percentage, and the results showed only negligible rounding differences.
